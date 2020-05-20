@@ -10,15 +10,15 @@ namespace NLog_Test_App
 {
     class Program
     {
-        //private static ILogger logger = LogManager.GetLogger("Program");
-        //private static ILogger loggerFile = LogManager.GetLogger("AdminLogFile");
-
-        private static ILog logger; // = new AdminLog();
+        private static ILog logger;
 
         static void Main(string[] args)
         {
             logger = new AdminLog();
             AdminFunction();
+
+            logger = new RegularLog();
+            RegularFunction();
 
             Console.ReadLine();
         }
@@ -31,6 +31,16 @@ namespace NLog_Test_App
             logger.AddError("some error occured");
 
             logger.AddLog(LogLevel.Trace, "Admin function exit");
+        }
+
+        private static void RegularFunction()
+        {
+            logger.AddLog(LogLevel.Trace, "Regular function enter");
+
+            Console.WriteLine("Some string from regular function");
+            logger.AddError("Error in rehular func");
+
+            logger.AddLog(LogLevel.Trace, "Regular function exit");
         }
     }
 }
