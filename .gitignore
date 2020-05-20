@@ -3,4 +3,5 @@
 ################################################################################
 
 /NLog Test App/.vs/NLog Test App/v16
-/NLog Test App/obj/Debug
+/NLog Test App/obj/
+/NLog Test App/bin/

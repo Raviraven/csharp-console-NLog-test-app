@@ -10,6 +10,9 @@ namespace NLog_Test_App
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello from my Main :)");
+
+            Console.ReadLine();
         }
     }
 }
