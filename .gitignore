@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/NLog Test App/.vs/NLog Test App/v16
+/NLog Test App/obj/Debug
