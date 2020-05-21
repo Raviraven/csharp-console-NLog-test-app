@@ -55,6 +55,7 @@
     <Compile Include="Loggers\AdminLog.cs" />
     <Compile Include="Loggers\ILog.cs" />
     <Compile Include="Loggers\RegularLog.cs" />
+    <Compile Include="NLog\CustomConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +63,10 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="bin\Debug\gmailpassword.txt" />
+    <Content Include="bin\Debug\gmailusername.txt" />
+    <Content Include="gmailpassword.txt" />
+    <Content Include="gmailusername.txt" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

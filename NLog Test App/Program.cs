@@ -1,5 +1,6 @@
 ﻿using NLog;
 using NLog_Test_App.Loggers;
+using NLog_Test_App.NLog;
 using System;
 
 namespace NLog_Test_App
@@ -10,12 +11,20 @@ namespace NLog_Test_App
 
         static void Main(string[] args)
         {
-            logger = new AdminLog();
-            AdminFunction();
+            try
+            {
+                CustomConfig.SetConfiguration();
+                logger = new AdminLog();
+                AdminFunction();
 
-            logger = new RegularLog();
-            RegularFunction();
+                logger = new RegularLog();
+                RegularFunction();
+            }
+            finally {
+                LogManager.Shutdown();
+            }
 
+            Console.WriteLine("And it's done");
             Console.ReadLine();
         }
 

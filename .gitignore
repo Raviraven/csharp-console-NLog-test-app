@@ -6,3 +6,6 @@
 /NLog Test App/obj/
 /NLog Test App/bin/
 /NLog Test App/.vs/NLog Test App/v14
+/NLog Test App/gmailusername.txt
+/NLog Test App/gmailpassword.txt
+/NLog Test App/NLog Test App.csproj.user
