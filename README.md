@@ -2,10 +2,12 @@
 Simple app written for testing NLog framework.
 
 ## Configuration
-NLog configurated with multiple targets.
+NLog configurated with multiple targets.  
+  
 ![targets from nlog config](gh/nlog_targets.PNG)
 
-And multiple rules.
+And multiple rules.  
+  
 ![rules from nlog config](gh/nlog_rules.PNG)
 
 NLog configurated to use multiple log rules
