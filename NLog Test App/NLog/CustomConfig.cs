@@ -17,6 +17,8 @@ namespace NLog_Test_App.NLog
             string basicLogLayout = "[${date}] [${level}] - ${message}";
             string errorLogLayout = "[${date}] [${level}] - ${callsite:className=True:methodName=True:includeNamespace=false} - ${message}";
 
+            string filenameVariable = "${var:FILENAME}";
+
             string smtpUsername = "";
             string smtpPassword = "";
 
@@ -69,14 +71,14 @@ namespace NLog_Test_App.NLog
             FileTarget errorLogPerAction = new FileTarget()
             {
                 FileName = $"{directory}ErrorLogFor_${{var:FILENAME}}.log",
-                Header = "Processing file: ${var:FILENAME}, error output:",
+                Header = $"Processing file: {filenameVariable}, error output:",
                 Layout = errorLogLayout
             };
 
             FileTarget globalLogPerAction = new FileTarget()
             {
                 Header = "Processing file: ${var:FILENAME}, log output:",
-                FileName = $"{directory}GlobalLogFor_${{var:FILENAME}}.log",
+                FileName = $"{directory}GlobalLogFor_{filenameVariable}.log",
                 Layout = basicLogLayout
             };
 
