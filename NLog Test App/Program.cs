@@ -12,6 +12,7 @@ namespace NLog_Test_App
 
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
             try
             {
                 CustomConfig.SetConfiguration();
@@ -46,6 +47,12 @@ namespace NLog_Test_App
             Console.WriteLine($"{LogLevel.AllLevels.First(n => n.Name.ToLower() == trace.ToLower()).Name}");
 
             //Console.ReadLine();
+        }
+
+        private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
+        {
+            Console.WriteLine("exitting");
+            LogManager.Shutdown();
         }
 
         private static void AdminFunction()
