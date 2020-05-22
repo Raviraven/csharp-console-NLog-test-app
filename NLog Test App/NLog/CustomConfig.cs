@@ -14,12 +14,15 @@ namespace NLog_Test_App.NLog
             string logFileName = "FileWithSomeCustomName";
             string globalLogFile = "GlobalLog";
 
+            string basicLogLayout = "[${date}] [${level}] - ${message}";
+            string errorLogLayout = "[${date}] [${level}] - ${callsite:className=True:methodName=True:includeNamespace=false} - ${message}";
+
             string smtpUsername = "";
             string smtpPassword = "";
 
             LoggingConfiguration configuration = new LoggingConfiguration();
 
-
+            #region targets configuration
             FileTarget errorFileTarget = new FileTarget()
             {
                 Name="ErrorsPerFile",
@@ -63,10 +66,28 @@ namespace NLog_Test_App.NLog
                 Name="AsyncMail"
             };
 
+            FileTarget errorLogPerAction = new FileTarget()
+            {
+                FileName = $"{directory}ErrorLogFor_${{var:FILENAME}}.log",
+                Header = "Processing file: ${var:FILENAME}, error output:",
+                Layout = errorLogLayout
+            };
+
+            FileTarget globalLogPerAction = new FileTarget()
+            {
+                Header = "Processing file: ${var:FILENAME}, log output:",
+                FileName = $"{directory}GlobalLogFor_${{var:FILENAME}}.log",
+                Layout = basicLogLayout
+            };
+
+            #endregion
+
             configuration.AddRule(LogLevel.Warn, LogLevel.Off, errorFileTarget);
             configuration.AddRuleForAllLevels(globalFileTarget);
             configuration.AddRuleForAllLevels(consoleTarget);
-            configuration.AddRuleForAllLevels(mailAsync);
+            //configuration.AddRuleForAllLevels(mailAsync);
+            configuration.AddRuleForOneLevel(LogLevel.Error, errorLogPerAction);
+            configuration.AddRuleForAllLevels(globalLogPerAction);
 
             LogManager.Configuration = configuration;
 
